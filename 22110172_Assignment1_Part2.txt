@@ -1,0 +1,106 @@
+####  Nubeed Ur Rahim 
+####  22110172  
+####  assignment1 part2 
+
+#####################################################################################################################################
+
+#question 1 part a) Fibonacci sequence using while loop. 
+
+fibo.While <- function(n){
+  i <- 0
+  a <- 0
+  b <- 1
+  if (n <= 0) {
+    print("Error. Enter +ve number.")
+  }
+  else if (n == 1) {
+    print(a)
+  }
+  else {
+    print(a)
+    print(b)
+  
+  while (i < (n-2)) {
+    
+    sum.ab <- a + b
+    print(sum.ab)
+    i <- i + 1
+    a <- b
+    b <- sum.ab
+  }
+ }
+}
+
+#here, the function is being called. If you want to enter n numbers, pass n to the function.
+#for example, if you want 6 numbers of the fibonacci sequence starting from 0, call the function as fibo.While(6)
+
+fibo.While(6)
+
+####################################################################################################################################
+
+#question 1 part b) Fibonacci sequence using recursion.
+
+fibo.Recur <- function(term){
+  
+  if (term < 0) {
+    print("Error. Enter +ve number.")
+  }
+  else if (term == 0) {
+    return(0)
+  }
+  else if (term == 1) {
+    return(1)
+  }
+  else { 
+    return(fibo.Recur(term-1) + fibo.Recur(term-2))
+  }
+}
+
+#Since we want to print the entire sequence and not just the last returned value, we have to use a for loop.
+#Below the function is being called. If you want n numbers in the fibonacci sequence, you should run the loop from 0 to n-1.  
+
+for(j in 0:(7-1)) {
+  print(fibo.Recur(j))
+}
+
+####################################################################################################################################
+
+#question 2) Function that determines whether an entered character is lowercase or uppercase. 
+
+char.attribute <- function(charac) {
+  if ((charac %in% letters) == TRUE) {
+    paste(charac,"is lowercase.", sep = " ")
+  }
+  
+  else if ((charac %in% LETTERS) == TRUE){
+    paste(charac,"is uppercase.", sep = " ")
+  }
+  else {
+    print("entered character is not a single alphabet.")
+  }
+}
+
+#char.attribute("T") will give the following output: "T is uppercase."
+#char.attribute("b") will give the following output: "b is lowercase."
+#char.attribute(6) will give the following output: "entered character is not a single alphabet."
+
+####################################################################################################################################
+
+#question 3)
+#part a)
+
+tair10 <- read.table("TAIR10_10gens.txt")
+
+####################################################################################################################################
+
+#part b)
+
+tair10_updated <- subset(tair10, (!(tair10$V5 - tair10$V4) > 1000 | (tair10$V4 - tair10$V5) > 1000)) 
+
+####################################################################################################################################
+
+#part c)
+
+write.table(tair10_updated, "TAIR10_10genes.filt.txt", row.names = FALSE, col.names = FALSE, quote = FALSE)
+
+####################################################################################################################################  
